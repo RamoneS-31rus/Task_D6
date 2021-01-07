@@ -1,0 +1,15 @@
+{%extends 'flatpages/default.html' %}
+{% load custom_filters %}
+
+{% block title %}
+Post
+{% endblock title %}
+
+
+{% block content %}
+    <h1>Статья</h1>
+    {{ post.post_title }}<br />
+    {{ post.post_time|date:'d M Y h:m' }}<br />
+    {{ post.post_text|censor }}<br />
+    {{ post.post_author }}
+{% endblock content %}
