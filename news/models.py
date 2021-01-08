@@ -7,13 +7,23 @@ class Author(models.Model):
     author = models.OneToOneField(User, on_delete=models.CASCADE, null=True, unique=True)
     rating = models.IntegerField(default=0)
 
-    def update_rating(self, rating):
-        self.rating = rating
-        value_post = Author.objects.filter(Post.post_rating)  # каждой статьи автора
-        value_author = Author.objects.filter(Comment.comment_rating)  # всех комментариев автора
-        value_comment = Author.objects.filter(Post.post_rating, Comment.comment_rating)  # всех комментариев к статьям автора
-        value = value_post * 3 + value_author + value_comment
-        self.rating = value
+    def update_rating(self):
+        rat_author = self.author
+        rat_post = 0
+        rat_com = 0
+        rat_post_com = 0
+        for i in range(len(Post.objects.filter(post_author=Author.objects.get(author=User.objects.get(username=rat_author))))):
+            rat_post += Post.objects.filter(post_author=Author.objects.get(author=User.objects.get(username=rat_author)))[i].post_rating
+
+        for i in range(len(Comment.objects.filter(comment_user=User.objects.get(username=rat_author)))):
+            rat_com += Comment.objects.filter(comment_user=User.objects.get(username=rat_author))[i].comment_rating
+
+        for post in Post.objects.filter(post_author=Author.objects.get(author=User.objects.get(username=rat_author))):
+            for i in range(len(Comment.objects.filter(comment_post=Post.objects.get(post_title=post)))):
+                rat_post_com += Comment.objects.filter(comment_post=Post.objects.get(post_title=post))[i].comment_rating
+
+        rat_sum = rat_post * 3 + rat_com + rat_post_com
+        self.rating = rat_sum
         self.save()
 
     def __str__(self):
