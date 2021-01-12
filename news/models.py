@@ -27,31 +27,31 @@ class Author(models.Model):
         self.save()
 
     def __str__(self):
-        return '%s' % self.author
+        return f'{self.author}'
 
 class Category(models.Model):
     title = models.CharField(unique=True, max_length=120)
 
     def __str__(self):
-        return self.title
+        return f'{self.title}'
 
 
 class Post(models.Model):
     news = 'Новость'
     article = 'Статья'
     type = [(news, 'Новость'), (article, 'Статья')]
-    post_author = models.ForeignKey(Author, on_delete=models.CASCADE) # Автор
-    post_type = models.CharField(max_length=30, choices=type, default=news) # Тип публикации
+    post_author = models.ForeignKey(Author, on_delete=models.CASCADE, verbose_name='Автор') # Автор
+    post_type = models.CharField(max_length=30, choices=type, default=news, verbose_name='Тип') # Тип публикации
     post_time = models.DateTimeField(auto_now_add=True) # Дата создания
-    post_category = models.ManyToManyField(Category) # Категории
-    post_title = models.CharField(max_length=50) # Заголовок
-    post_text = models.TextField() # Текст
+    post_category = models.ManyToManyField(Category, verbose_name='Категории') # Категории
+    post_title = models.CharField(max_length=50, verbose_name='Заголовок') # Заголовок
+    post_text = models.TextField(verbose_name='Текст') # Текст
     post_rating = models.IntegerField(default=0) # Рейтинг
     post_likes = models.IntegerField(default=0) # Понравилось
     post_dislikes = models.IntegerField(default=0) # Не понравилось
 
-    def __str__(self):
-        return self.post_title
+    def get_absolute_url(self):  # добавим абсолютный путь чтобы после создания нас перебрасывало на страницу с новостью
+        return f'/news/{self.id}'
 
     def preview(self):
         return self.post_text[:124] + '...'
@@ -65,6 +65,9 @@ class Post(models.Model):
         self.post_dislikes += 1
         self.post_rating = self.post_likes - self.post_dislikes
         self.save()
+
+    def __str__(self):
+        return f'{self.post_title}'
 
 
 class PostCategory(models.Model):
@@ -81,9 +84,6 @@ class Comment(models.Model):
     comment_likes = models.IntegerField(default=0) # Понравилось
     comment_dislikes = models.IntegerField(default=0) # Не понравилось
 
-    def __str__(self):
-        return self.comment_text
-
     def like(self):
         self.comment_likes += 1
         self.comment_rating = self.comment_likes
@@ -94,3 +94,5 @@ class Comment(models.Model):
         self.comment_rating = self.comment_likes - self.comment_dislikes
         self.save()
 
+    def __str__(self):
+        return f'{self.comment_text}'
