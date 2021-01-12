@@ -15,7 +15,6 @@ class PostList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['time_now'] = datetime.utcnow()
         context['filter'] = PostFilter(self.request.GET, queryset=self.get_queryset())
         context['form'] = PostForm()
         return context
@@ -54,6 +53,12 @@ class PostSearch(ListView):
 
     def get_context_data(self, **kwargs):  # забираем отфильтрованные объекты переопределяя метод get_context_data у наследуемого класса
         context = super().get_context_data(**kwargs)
-        context['time_now'] = datetime.utcnow()
         context['filter'] = PostFilter(self.request.GET, queryset=self.get_queryset())  # вписываем наш фильтр в контекст
         return context
+
+
+class SearchDetail(DetailView):
+    model = Post
+    template_name = 'search_detail.html'
+    context_object_name = 'post'
+    queryset = Post.objects.all()

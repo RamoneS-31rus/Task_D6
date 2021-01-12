@@ -6,9 +6,8 @@
         <form method="POST">
             {% csrf_token %}
             <hr>
-            <button type="submit" class="btn btn-primary">Удалить</button>
+            <button type="submit" class="btn btn-danger">Удалить</button> <a class="btn btn-primary" href="/news" role="button">Отмена</a>
         </form>
-        <button type="submit" class="btn btn-primary">Отмена</button>
-    </div>
 </div>
+
 {% endblock %}

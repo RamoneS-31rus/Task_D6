@@ -8,8 +8,6 @@ Posts
 
 {% block content %}
     <h1>Найдено статей:  {{ filter.qs|length }}</h1>
-    <h1>Все статьи</h1>
-    <h3>{{ time_now|date:'M d Y' }}</h3>
     <hr>
 
     <form method="GET">
@@ -27,14 +25,13 @@ Posts
                     <strong>Дата публикации</strong>
                 </td>
                 <td>
-                    <strong>первые 50 символов</strong>
+                    <strong>Превью</strong>
                 </td>
             </tr>
         {% for post in filter.qs %}
             <tr>
                 <td>
-                     <a href="{% url 'search' post.id %}">{{ post.post_title|title }}</a>
-                    {{ post.post_title|title|censor }}
+                     <a href="{% url 'search_detail' post.id %}">{{ post.post_title|title }}</a>
                 </td>
                 <td>
                     {{ post.post_time }}

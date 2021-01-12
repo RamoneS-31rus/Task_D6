@@ -10,11 +10,11 @@ class PostForm(ModelForm):
         widgets = {
             'post_author': Select(attrs={
                 'class': 'custom-select',
-                'option selected': 'Выбрать...'
+                #'option selected': 'Выбрать...'
             }),
             'post_type': Select(attrs={
                 'class': 'custom-select',
-                'option selected': 'Выбрать...'
+                #'option selected': 'Выбрать...'
             }),
             'post_category': SelectMultiple(attrs={
                 'multiple class': 'form-control',
