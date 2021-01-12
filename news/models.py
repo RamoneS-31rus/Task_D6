@@ -39,9 +39,9 @@ class Category(models.Model):
 class Post(models.Model):
     news = 'Новость'
     article = 'Статья'
-    type = [(news, 'Новость'), (article, 'Статья')]
+    type = [(news, 'Новость'), (article, 'Статья'), ('select', 'Выбрать')]
     post_author = models.ForeignKey(Author, on_delete=models.CASCADE, verbose_name='Автор') # Автор
-    post_type = models.CharField(max_length=30, choices=type, default=news, verbose_name='Тип') # Тип публикации
+    post_type = models.CharField(max_length=30, choices=type, default='select', verbose_name='Тип') # Тип публикации
     post_time = models.DateTimeField(auto_now_add=True) # Дата создания
     post_category = models.ManyToManyField(Category, verbose_name='Категории') # Категории
     post_title = models.CharField(max_length=50, verbose_name='Заголовок') # Заголовок
