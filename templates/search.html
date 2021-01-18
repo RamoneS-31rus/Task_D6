@@ -31,10 +31,10 @@ Posts
         {% for post in filter.qs %}
             <tr>
                 <td>
-                     <a href="{% url 'search_detail' post.id %}">{{ post.post_title|title }}</a>
+                     <a href="{% url 'post' post.id %}">{{ post.post_title|title }}</a>
                 </td>
                 <td>
-                    {{ post.post_time }}
+                    {{ post.post_time|date:'d M Y h:m' }}
                 </td>
                 <td>
                     {{ post.post_text|title|censor }}

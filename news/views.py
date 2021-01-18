@@ -55,10 +55,3 @@ class PostSearch(ListView):
         context = super().get_context_data(**kwargs)
         context['filter'] = PostFilter(self.request.GET, queryset=self.get_queryset())  # вписываем наш фильтр в контекст
         return context
-
-
-class SearchDetail(DetailView):
-    model = Post
-    template_name = 'search_detail.html'
-    context_object_name = 'post'
-    queryset = Post.objects.all()

@@ -9,7 +9,6 @@ News
 {% block content %}
     <h1>Количество статей:  {{ posts|length }}</h1>
     <h1>Все статьи</h1>
-    <h3>{{ time_now|date:'d M Y' }}</h3>
     <hr>
     {%  if posts %}
         <table>
@@ -27,15 +26,17 @@ News
         {% for post in posts %}
             <tr>
                 <td>
-                    {{ post.post_title|title|censor }}
+                    <a href="{% url 'post' post.id %}">{{ post.post_title|title|censor }}</a>
                 </td>
                 <td>
-                    {{ post.post_time }}
+                    {{ post.post_time|date:'d M Y h:m' }}
                 </td>
                 <td>
                     {{ post.post_text|censor|truncatechars:20}}
-                    <a class="btn btn-warning" href="{% url 'post_update' post.id %}" role="button">Редактировать</a>
-                    <a class="btn btn-danger" href="{% url 'post_delete' post.id %}" role="button">Удалить</a>
+                </td>
+                <td>
+                    <a class="btn btn-warning btn-sm" href="{% url 'post_update' post.id %}" role="button">Редактировать</a>
+                    <a class="btn btn-danger btn-sm" href="{% url 'post_delete' post.id %}" role="button">Удалить</a>
                 </td>
             </tr>
         {% endfor %}
