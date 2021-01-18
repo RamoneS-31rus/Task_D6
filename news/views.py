@@ -3,6 +3,7 @@ from .models import Post, Category
 from .filters import PostFilter
 from .forms import PostForm
 from datetime import datetime
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class PostList(ListView):
@@ -32,7 +33,7 @@ class PostCreateView(CreateView):
     form_class = PostForm
 
 
-class PostUpdateView(UpdateView):
+class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post
     form_class = PostForm
     template_name = 'post_update.html'
