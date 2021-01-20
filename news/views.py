@@ -1,9 +1,11 @@
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post, Category
+from .models import Post
 from .filters import PostFilter
 from .forms import PostForm
-from datetime import datetime
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.shortcuts import render
+from django.shortcuts import redirect
+
 
 
 class PostList(ListView):
@@ -27,23 +29,26 @@ class PostDetail(DetailView):
     queryset = Post.objects.all()
 
 
-class PostCreateView(CreateView):
+class PostCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Post
     template_name = 'post_create.html'
     form_class = PostForm
+    permission_required = ('news.add_post')
 
 
-class PostUpdateView(LoginRequiredMixin, UpdateView):
+class PostUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Post
     form_class = PostForm
     template_name = 'post_update.html'
+    permission_required = ('news.change_post')
 
 
-class PostDeleteView(DeleteView):
+class PostDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = Post
     template_name = 'post_delete.html'
     queryset = Post.objects.all()
     success_url = '/news/'
+    permission_required = ('news.delete_post')
 
 
 class PostSearch(ListView):
