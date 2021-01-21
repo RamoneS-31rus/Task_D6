@@ -34,7 +34,7 @@ Posts
                      <a href="{% url 'post' post.id %}">{{ post.post_title|title }}</a>
                 </td>
                 <td>
-                    {{ post.post_time|date:'d M Y h:m' }}
+                    {{ post.post_time|date:'d.m.Y H:i' }}
                 </td>
                 <td>
                     {{ post.post_text|title|censor }}
