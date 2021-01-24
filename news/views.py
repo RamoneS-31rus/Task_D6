@@ -3,7 +3,6 @@ from .models import Post
 from .filters import PostFilter
 from .forms import PostForm
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.shortcuts import render
 from django.shortcuts import redirect
 
 
@@ -41,6 +40,11 @@ class PostUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     form_class = PostForm
     template_name = 'post_update.html'
     permission_required = ('news.change_post')
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect('/accounts/login/')
+        return super().dispatch(request, *args, **kwargs)
 
 
 class PostDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
