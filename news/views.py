@@ -3,8 +3,10 @@ from .models import Post
 from .filters import PostFilter
 from .forms import PostForm
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.shortcuts import render
 from django.shortcuts import redirect
+from django.core.paginator import Paginator
+from django.shortcuts import render
+
 
 
 
@@ -42,6 +44,11 @@ class PostUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     template_name = 'post_update.html'
     permission_required = ('news.change_post')
 
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect('accounts/login/')
+        return super().dispatch(request, *args, **kwargs)
+
 
 class PostDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = Post
@@ -55,7 +62,6 @@ class PostSearch(ListView):
     model = Post
     template_name = 'search.html'
     context_object_name = 'posts'
-    paginate_by = 1
 
     def get_context_data(self, **kwargs):  # забираем отфильтрованные объекты переопределяя метод get_context_data у наследуемого класса
         context = super().get_context_data(**kwargs)

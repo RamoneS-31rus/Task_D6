@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'news',
     'django_filters',
     'sign',
-    'protect',
+    'profile',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',

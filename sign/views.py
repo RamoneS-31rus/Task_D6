@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 class BaseRegisterView(CreateView):
     model = User
-    success_url = '/'
+    success_url = '/news'
 
 
 @login_required
