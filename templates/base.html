@@ -1,15 +1,18 @@
-from django.contrib import admin
+{% load socialaccount %}
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{% block head_title %}{% endblock head_title %}</title>
+        <title>{% block head_title %}жеваный крот{% endblock head_title %}</title>
     </head>
     <body>
         {% block body %}
+        1
         {% block content %}
+        что за херня
         {% endblock content %}
         {% endblock body %}
         {% block extra_body %}
+        123
         {% endblock extra_body %}
     </body>
 </html>
