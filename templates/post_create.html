@@ -1,11 +1,16 @@
 {%extends 'default.html' %}
 
 {% block content %}
-<div class="col-lg-8 col-md-10 mx-auto">
+<hr>
+<div>
     <form method="POST">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Добавить">
+        {% csrf_token %}
+        {{ form }}
+         <hr>
+        <div>
+            <button type="submit">Добавить</button>
+            <a  href="{% url 'posts' %}" role="button">Отмена</a>
+        </div>
     </form>
 </div>
 {% endblock content %}

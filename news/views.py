@@ -30,12 +30,22 @@ class PostDetail(DetailView):
     context_object_name = 'post'
     queryset = Post.objects.all()
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_authors'] = self.request.user.groups.filter(name='authors').exists()
+        return context
+
 
 class PostCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Post
     template_name = 'post_create.html'
     form_class = PostForm
     permission_required = ('news.add_post')
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect('/accounts/login/')
+        return super().dispatch(request, *args, **kwargs)
 
 
 class PostUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
@@ -46,7 +56,7 @@ class PostUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
-            return redirect('accounts/login/')
+            return redirect('/accounts/login/')
         return super().dispatch(request, *args, **kwargs)
 
 
@@ -54,8 +64,13 @@ class PostDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = Post
     template_name = 'post_delete.html'
     queryset = Post.objects.all()
-    success_url = '/news/'
+    success_url = '/'
     permission_required = ('news.delete_post')
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect('/accounts/login/')
+        return super().dispatch(request, *args, **kwargs)
 
 
 class PostSearch(ListView):
