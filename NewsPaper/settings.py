@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'news',
     'django_filters',
     'sign',
-    'protect',
+    'profile',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -89,8 +89,9 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-ACCOUNT_FORMS = {'signup': 'sign.models.BasicSignupForm'}
-LOGIN_URL = 'accounts/login/'
+ACCOUNT_FORMS = {'register': 'sign.models.BasicSignupForm'}
+#LOGIN_URL = 'accounts/login/'
+LOGIN_URL = 'sign/login/'
 LOGIN_REDIRECT_URL = '/'
 
 WSGI_APPLICATION = 'NewsPaper.wsgi.application'

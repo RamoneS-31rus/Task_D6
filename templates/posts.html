@@ -7,40 +7,22 @@ News
 
 
 {% block content %}
-    <h1>Количество статей:  {{ posts|length }}</h1>
-    <h1>Все статьи</h1>
+
     <hr>
     {%  if posts %}
-        <table>
-            <tr>
-                <td>
-                    Заголовок
-                </td>
-                <td>
-                    Дата публикации
-                </td>
-                <td>
-                    Превью
-                </td>
-            </tr>
         {% for post in posts %}
-            <tr>
-                <td>
-                    <a href="{% url 'post' post.id %}">{{ post.post_title|title|censor }}</a>
-                </td>
-                <td>
-                    {{ post.post_time|date:'d.m.Y H:i' }}
-                </td>
-                <td>
-                    {{ post.post_text|censor|truncatechars:20}}
-                </td>
-                <td>
-                    <a class="btn btn-warning btn-sm" href="{% url 'post_update' post.id %}" role="button">Редактировать</a>
-                    <a class="btn btn-danger btn-sm" href="{% url 'post_delete' post.id %}" role="button">Удалить</a>
-                </td>
-            </tr>
+                <div class="container-fluid my-3">
+                    <div class="col-md-4">
+                        <div class="card mb-3">
+                        <div class="card-header">{{ post.post_author}} {{post.post_time|date:'d.m.Y H:i' }}</div>
+                            <div class="card-body">
+                              <h5 class="card-title"><a href="{% url 'post' post.id %}">{{ post.post_title|title|censor }}</a></h5>
+                              <p class="card-text">{{ post.post_text|censor|truncatechars:20}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         {% endfor %}
-        </table>
     {%  else %}
         <h1>новостей нет</h1>
     {% endif %}
