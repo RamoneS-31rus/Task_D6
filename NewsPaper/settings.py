@@ -89,7 +89,7 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-ACCOUNT_FORMS = {'register': 'sign.models.BasicSignupForm'}
+#ACCOUNT_FORMS = {'signup': 'sign.forms.BasicSignupForm'}
 #LOGIN_URL = 'accounts/login/'
 LOGIN_URL = 'sign/login/'
 LOGIN_REDIRECT_URL = '/'

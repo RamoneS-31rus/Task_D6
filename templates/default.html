@@ -40,6 +40,9 @@
             <a class="nav-link" href="{% url 'search' %}">Поиск</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="{% url 'post_category' %}">Категории</a>
+          </li>
+          <li class="nav-item">
             {% if is_authors %}
             <a class="nav-link" href="{% url 'post_create' %}">Добавить пост</a>
             {% endif %}

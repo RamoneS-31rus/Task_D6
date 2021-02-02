@@ -6,13 +6,13 @@
     <form class="login-form" method="post" action="{% url 'login' %}">
         {% csrf_token %}
         {% load socialaccount %}
-        <p class="message">Войти через:</p>
+        <p class="message">Войти с помощью:</p>
         <a href="{% provider_login_url 'google' method='oauth2' %}">google</a>
         <br><br>
         <input type="text" name="username" placeholder="Логин или почта">
         <input type="password" name="password" placeholder="Пароль">
         <button>Войти</button>
-        <p><a href="/sign/register">Регистрация</a></p>
+        <p><a href="{% url 'signup' %}">Регистрация</a></p>
     </form>
   </div>
 </div>

@@ -8,6 +8,7 @@ Post
 
 {% block content %}
     <h1>{{ post.post_type }}</h1>
+    <p>Категория: {{ post_category }}</p>
     {{ post.post_title }}<br />
     {{ post.post_time|date:'d.m.Y H:i' }}<br />
     {{ post.post_text|censor }}<br />

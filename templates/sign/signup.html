@@ -5,14 +5,14 @@
   <div class="form">
     <form method="post">
       {% csrf_token %}
-      <input type="text" name="username" placeholder="Логин"/>
       <input type="text" name="first_name" placeholder="Имя"/>
       <input type="text" name="last_name" placeholder="Фамилия"/>
+      <input type="text" name="username" placeholder="Логин"/>
       <input type="text" name="email" placeholder="Email"/>
       <input type="password" name="password1" placeholder="Пароль"/>
-      <input type="password" name="password2" placeholder="Подтвердите пароль"/>
+      <input type="password" name="password2" placeholder="Повторите пароль"/>
       <button>Продолжить</button>
-      <p><a href="/sign/login">Авторизация</a></p>
+      <p><a href="{% url 'login' %}">Авторизация</a></p>
     </form>
   </div>
 </div>

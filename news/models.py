@@ -31,6 +31,7 @@ class Author(models.Model):
 
 class Category(models.Model):
     title = models.CharField(unique=True, max_length=120)
+    subscribers = models.ManyToManyField(User, blank=True)
 
     def __str__(self):
         return f'{self.title}'
@@ -73,6 +74,9 @@ class Post(models.Model):
 class PostCategory(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.category}'
 
 
 class Comment(models.Model):
