@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+  <p>Новая статья в категории </p>
+  <p> Название статьи: {{ post_title }}</p><br>
+  <p> {{ post_text|truncatechars:50 }}</p><br>
+  <a href="{{ link }}">Читать</a>
+
+</body>
+</html>
