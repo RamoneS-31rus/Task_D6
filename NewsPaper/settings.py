@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.flatpages',
     'news.apps.NewsConfig',
     'django_filters',
-    'sign',
+    'sign.apps.SignConfig',
     'profile',
     'allauth',
     'allauth.account',

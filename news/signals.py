@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 
 # в декоратор передаётся первым аргументом сигнал, на который будет реагировать эта функция,
 # и в отправители надо передать также модель
-@receiver(m2m_changed, sender=PostCategory)
+@receiver(m2m_changed, sender=Post)
 def notify_post(sender, instance, **kwargs):
     changed_category = Post.objects.order_by('-id')[0].post_category.all()
     email_subscribers = []
@@ -23,9 +23,9 @@ def notify_post(sender, instance, **kwargs):
     link = f'http://127.0.0.1:8000/news/{link_id}'
 
     msg = EmailMultiAlternatives(
-        subject='Появились обновления в категории на которую вы подписаны',
+        body=f'Появились обновления в категории на которую вы подписаны',
         from_email='ramones.31rus@yandex.ru',
-        to= email_subscribers
+        to=email_subscribers,
     )
 
     html_content = render_to_string('/news/create_email.html',
