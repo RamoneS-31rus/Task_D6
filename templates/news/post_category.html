@@ -1,10 +1,9 @@
 {% extends 'default.html' %}
 {% block content %}
 <div>
-    <h2>Подписаться на обновления</h2>
+    <h2>Подписаться на обновления:</h2>
     {% for category in categories %}
-    <p>Категория: {{ category.title }}</p>
-    <a href="{% url 'subscribe' category.pk %}">Далее</a>
+        <p><a href="{% url 'subscribe' category.pk %}">{{ category.title }}</a></p>
     {% endfor %}
 </div>
 {% endblock %}

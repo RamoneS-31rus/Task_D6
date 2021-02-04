@@ -113,12 +113,6 @@ class PostCategoryList(ListView):
     queryset = Category.objects.all()
 
 
-class PostCategoryDetails(LoginRequiredMixin, DetailView):
-    template_name = 'news/category.html'
-    context_object_name = 'category'
-    queryset = Category.objects.all()
-
-
 class AddSubscribers(UpdateView):
     template_name = 'news/category.html'
     model = Category
@@ -128,4 +122,4 @@ class AddSubscribers(UpdateView):
         user = self.request.user
         id = self.kwargs.get('pk')
         Category.objects.get(pk=id).subscribers.add(User.objects.get(username=str(user)))
-        return redirect('/')
+        return redirect('/categories/')
