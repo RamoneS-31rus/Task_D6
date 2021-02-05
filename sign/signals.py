@@ -13,8 +13,8 @@ def notify_singup(sender, created, **kwargs):
 
     msg = EmailMultiAlternatives(
         subject=f'Регистрация',
-        body=f'Вы зарегистрировались на сайте.',
-        from_email='ramones.31rus@yandex.com',
+        body=f'Спасибо, что Вы зарегистрировались на нашем сайте.',
+        from_email='info.django@yandex.com',
         to=mail,
     )
 
