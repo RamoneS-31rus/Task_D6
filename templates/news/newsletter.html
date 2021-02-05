@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <p>Новые статьи за неделю в категории: {{ category }}</p>
+    {%   for post in posts %}
+    <a href="http://127.0.0.1:8000/news/{{ post.id }}">{{ post.post_title }}</a><br>
+    {%   endfor  %}<br>
+</body>
+{% endblock content %}
+
+</html>

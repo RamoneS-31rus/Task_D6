@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google', # ... include the providers you want to enable
+    'django_apscheduler',
 
 ]
 
@@ -163,3 +164,8 @@ EMAIL_HOST_PASSWORD = 'PasswordForDjango!' # пароль от почты
 EMAIL_USE_SSL = True # Яндекс использует ssl, подробнее о том, что это, почитайте на Википедии, но включать его здесь обязательно
 
 DEFAULT_FROM_EMAIL = 'info.django@yandex.ru'
+
+# формат даты, которую будет воспрнимать наш задачник
+APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
+# если задача не выполняется за 25 секунд, то она автоматически снимается, можете поставить время побольше, но как правило, это сильно бьёт по производительности сервера
+APSCHEDULER_RUN_NOW_TIMEOUT = 25  # Seconds
