@@ -14,11 +14,10 @@ News
                 <div class="container-fluid my-3">
                     <div class="col-md-4">
                         <div class="card mb-3">
-                        <div class="card-header">{{ post.post_author}} {{post.post_time|date:'d.m.Y H:i' }}</div>
-                            <div class="card-body">
-                              <h5 class="card-title"><a href="{% url 'post' post.id %}">{{ post.post_title|title|censor }}</a></h5>
-                              <p class="card-text">{{ post.post_text|censor|truncatechars:20}}</p>
-                            </div>
+                            <h5 class="card-header"><a href="{% url 'post' post.id %}">{{ post.post_title|title|censor }}</a></h5>
+                                <div class="card-title">{{ post.post_author}} {{post.post_time|date:'d.m.Y H:i' }}</div>
+                                <div class="card-body">{{ post.post_text|censor|truncatechars:20}}</div>
+                                <p class="card-text"></p>
                         </div>
                     </div>
                 </div>

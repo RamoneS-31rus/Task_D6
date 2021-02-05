@@ -94,3 +94,40 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.table_default {
+    border-collapse: collapse; /* Убирает двойные линии между ячейками */
+    width: 100%; /* Ширина таблицы */
+    border-spacing: 1px; /* Расстояние между ячейками */
+    table-layout: fixed;
+   }
+   th, td {
+    position: relative; /* Относительное позиционирование */
+    border: 1px solid black; /* Граница вокруг ячеек */
+    padding: 5px; /* Поля вокруг текста */
+    word-wrap:break-word; /* Перенос текста на новую строку, если не помещается */
+   }
+   th {
+       background: #497c9d;
+       color: #fff;
+   }
+   tr:hover {
+       background: #ddd; /* Цвет фона при наведении */
+       /*color: red; /* Цвет текста при наведении */
+   }
+   th:hover {
+       background: #497c9d; /* Цвет фона при наведении */
+       /*color: red; /* Цвет текста при наведении */
+   }
+   td a{
+    position: absolute; /* Абсолютное позиционирование */
+    text-align: center; /* Текст по центру */
+    text-decoration: none; /* Отменяем подчеркивание у ссылки */
+    left: 0; right: 0; /* По ширине ячейки */
+    top: 0; bottom: 0; /* По высоте ячейки */
+    background: #fff; /* Цвет фона */
+    color: #497c9d; /* Цвет ссылок */
+    padding: 5px; /* Поля вокруг текста */
+   }
+   td a:hover { background: #ddd; }
+   /*td a:active { background: linear-gradient(#f59500, #f5ae00) #f59500; } */
