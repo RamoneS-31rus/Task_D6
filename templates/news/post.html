@@ -9,7 +9,7 @@ Post
 {% block content %}
     <table class="table_default">
         <tr>
-            <td>{{ post.post_type }} Категория: <a href="{% url 'post_category' %}">{{ post_category }}</a></td>
+            <td>{{ post.post_type }} Категория:<a href="{% url 'categories' %}">{{ post_category }}</a></td>
         </tr>
         <tr>
             <td>{{ post.post_title }}</td>
@@ -22,7 +22,7 @@ Post
         </tr>
     </table>
     {% if is_authors %}
-    <a class="btn btn-warning btn-sm" href="{% url 'post_update' post.id %}" role="button">Редактировать</a>
+    <a class="button_edit" href="{% url 'post_update' post.id %}" role="button">Редактировать</a>
     <a class="btn btn-danger btn-sm" href="{% url 'post_delete' post.id %}" role="button">Удалить</a>
     {% endif %}
 {% endblock content %}

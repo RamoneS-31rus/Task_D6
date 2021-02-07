@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.models import Group
 
 
-@receiver(post_save, sender=User)
+@receiver(post_save, sender=User)  # отправляем новомому пользователю уведомление на почту, после регистрации
 def notify_singup(sender, created, **kwargs):
 
     user = User.objects.order_by('-id')[0]
@@ -20,7 +20,8 @@ def notify_singup(sender, created, **kwargs):
 
     msg.send()
 
-@receiver(post_save, sender=User)
+
+@receiver(post_save, sender=User)  # добавляем нового пользователя в группу 'common'
 def save(sender, created, **kwargs):
     user = User.objects.order_by('-id')[0]
     basic_group = Group.objects.get(name='common')

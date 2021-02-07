@@ -16,18 +16,22 @@ class PostList(ListView):
     template_name = 'news/posts.html'
     context_object_name = 'posts'
     queryset = Post.objects.order_by('-id')
-    paginate_by = 3
-    form_class = PostForm
+    paginate_by = 4
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['filter'] = PostFilter(self.request.GET, queryset=self.get_queryset())
-        context['form'] = PostForm()
         context['is_authors'] = self.request.user.groups.filter(name='authors').exists()
+        """id = self.kwargs.get('pk')
+        category = ''
+        for i in Post.objects.get(pk=id).post_category.all():
+            category += (i.title + ' ')
+        context['post_category'] = category"""
         return context
 
 
 class PostDetail(DetailView):
+    model = Post
     template_name = 'news/post.html'
     context_object_name = 'post'
     queryset = Post.objects.all()
@@ -51,6 +55,7 @@ class PostCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['form'] = PostForm()
         context['is_authors'] = self.request.user.groups.filter(name='authors').exists()
         return context
 
@@ -108,9 +113,23 @@ class PostSearch(ListView):
 
 
 class PostCategoryList(ListView):
-    template_name = 'news/post_category.html'
+    template_name = 'news/categories.html'
     context_object_name = 'categories'
     queryset = Category.objects.all()
+
+
+class PostCategoryDetails(LoginRequiredMixin, DetailView):
+    template_name = 'news/category.html'
+    context_object_name = 'category'
+    queryset = Category.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        id = self.kwargs.get('pk')
+        category = Category.objects.get(pk=id)
+        context['category_posts'] = Post.objects.filter(post_category__title=category)
+        return context
+
 
 
 class AddSubscribers(UpdateView):
