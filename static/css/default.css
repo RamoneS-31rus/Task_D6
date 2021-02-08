@@ -175,12 +175,24 @@
 }
 .button.button-del:hover {background: #d0312a}
 
+.button_info {
+  display: inline-block;
+  color: black;
+  border: 1px solid black; /* Параметры рамки */
+  text-decoration: none;
+  padding: .1em 1em; /* Поля вокруг текста */
+  outline: none;
+  background: #ffffff;
+  transition: 0.2s;
+}
+.button.button-info:hover {background: #006da3}
+
 /* Body */
 #glaw{
   display:block;
   margin-left: auto;
   margin-right: auto;
-  width:900px;
+  width:1000px;
 }
 .blok_center, .blok_right{
   border-radius: 4px;

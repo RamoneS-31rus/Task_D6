@@ -1,7 +1,6 @@
 {% extends 'default.html' %}
 {% block content %}
 <div>
-    <h2>Подписаться на обновления:</h2>
     {% for category in categories %}
         <p><a href="{% url 'category_posts' category.pk %}">{{ category.title }}</a></p>
     {% endfor %}

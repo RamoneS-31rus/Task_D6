@@ -35,9 +35,9 @@ class PostDetail(DetailView):
         context = super().get_context_data(**kwargs)
         context['is_authors'] = self.request.user.groups.filter(name='authors').exists()
         id = self.kwargs.get('pk')
-        category = ''
-        for i in Post.objects.get(pk=id).post_category.all():
-            category += (i.title + ' ')
+        category = []
+        for i in list(Post.objects.get(pk=id).post_category.all()):
+            category.append(i)
         context['post_category'] = category
         return context
 
@@ -122,9 +122,9 @@ class PostCategoryDetails(DetailView):
         context = super().get_context_data(**kwargs)
         id = self.kwargs.get('pk')
         category = Category.objects.get(pk=id)
-        posts = ''
-        for i in Post.objects.filter(post_category__title=category):
-            posts += (i.post_title + ' ')
+        posts = []
+        for i in list(Post.objects.filter(post_category__title=category)):
+            posts.append(i)
         context['category_posts'] = posts
         return context
 

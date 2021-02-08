@@ -1,13 +1,15 @@
 {% extends 'default.html' %}
 
 {% block content %}
-<h2 class="post-title">
+<h2>
  {{ category.title }}
 </h2>
 
 <div>
-    <h3></h3><a href="{% url 'subscribe' category.pk %}">Подписаться на рассылку новостей</a>
+    <a href="{% url 'subscribe' category.pk %}">Подписаться на рассылку новостей</a>
 </div>
-<br>
-{{ category_posts }}
+<hr>
+{% for post in category_posts %}
+<p><a href="{% url 'post' post.pk %}">{{ post.post_title }}</p>
+{% endfor %}
 {% endblock %}
