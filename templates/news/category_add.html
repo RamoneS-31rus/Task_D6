@@ -1,0 +1,19 @@
+{% extends 'default.html' %}
+
+{% block content %}
+<h2 class="post-title">
+ Действительно подписаться на "{{ category.title }}"?
+</h2>
+
+<div>
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit" class="button_add_form">Подписаться</button> <a class="button_cancel_form" href="{% url 'category_posts' category.pk %}" role="button">Отмена</a>
+
+       <!-- <button type="submit" class="btn btn-secondary btn-sm">Отписаться</button>-->
+    </form>
+</div>
+<br>
+
+{% endblock %}

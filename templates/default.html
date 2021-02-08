@@ -18,6 +18,7 @@
       <a class="nav-link" href="{% url 'post_create' %}">Добавить пост</a>
       {% endif %}
     </div>
+    {% if user.is_authenticated %}
     <div class="dropdown-pro">
       <button class="dropbtn-pro">{{ user.username }}
         <i class="fa fa-caret-down"></i>
@@ -26,7 +27,12 @@
         <a href="{% url 'profile' %}">Профиль</a>
         <a href="{% url 'logout' %}">Выйти</a>
       </div>
+    {% else %}
+      <div class="dropdown-pro">
+        <a href="{% url 'login' %}">Войти</a>
+      </div>
     </div>
+    {% endif %}
   </nav>
 </header>
 

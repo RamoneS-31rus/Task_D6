@@ -3,7 +3,7 @@
 <div>
     <h2>Подписаться на обновления:</h2>
     {% for category in categories %}
-        <p><a href="{% url 'subscribe' category.pk %}">{{ category.title }}</a></p>
+        <p><a href="{% url 'category_posts' category.pk %}">{{ category.title }}</a></p>
     {% endfor %}
 </div>
 {% endblock %}

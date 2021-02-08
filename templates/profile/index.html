@@ -2,7 +2,10 @@
 
 {% block content %}
 <h2>Профиль пользователя {{request.user.username}}</h2>
-<div> ... </div>
+<p>Имя: {{ user.first_name }}</p>
+<p>Фамилия: {{ user.last_name }}</p>
+<p>Почта: {{ user.email }}</p>
+
 {% if is_not_authors %}
 <button> <a href="{% url 'upgrade' %}">Стать автором</a> </button>
 {% endif %}

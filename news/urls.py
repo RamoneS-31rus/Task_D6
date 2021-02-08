@@ -11,6 +11,6 @@ urlpatterns = [
     path('news/search/', PostSearch.as_view(), name='search'),
     path('categories/', PostCategoryList.as_view(), name='categories'),
     path('category/<int:pk>/', PostCategoryDetails.as_view(), name='category_posts'),
-    path('category/<int:pk>/add', AddSubscribers.as_view(), name='subscribe'),
+    path('category/<int:pk>/add/', AddSubscribers.as_view(), name='subscribe'),
 
 ]

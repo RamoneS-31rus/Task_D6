@@ -6,12 +6,7 @@
 </h2>
 
 <div>
-    <form method="post">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit" class="button_add">Подписаться</button>
-       <!-- <button type="submit" class="btn btn-secondary btn-sm">Отписаться</button>-->
-    </form>
+    <h3></h3><a href="{% url 'subscribe' category.pk %}">Подписаться на рассылку новостей</a>
 </div>
 <br>
 {{ category_posts }}

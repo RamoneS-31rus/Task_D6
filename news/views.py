@@ -122,13 +122,16 @@ class PostCategoryDetails(DetailView):
         context = super().get_context_data(**kwargs)
         id = self.kwargs.get('pk')
         category = Category.objects.get(pk=id)
-        context['category_posts'] = Post.objects.filter(post_category__title=category)
+        posts = ''
+        for i in Post.objects.filter(post_category__title=category):
+            posts += (i.post_title + ' ')
+        context['category_posts'] = posts
         return context
 
 
 
 class AddSubscribers(UpdateView):
-    template_name = 'news/category.html'
+    template_name = 'news/category_add.html'
     model = Category
     fields = []
 
