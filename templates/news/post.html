@@ -23,6 +23,6 @@ Post
     </table>
     {% if is_authors %}
     <a class="button_edit" href="{% url 'post_update' post.id %}" role="button">Редактировать</a>
-    <a class="btn btn-danger btn-sm" href="{% url 'post_delete' post.id %}" role="button">Удалить</a>
+    <a class="button_del" href="{% url 'post_delete' post.id %}" role="button">Удалить</a>
     {% endif %}
 {% endblock content %}

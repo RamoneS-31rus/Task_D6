@@ -22,11 +22,6 @@ class PostList(ListView):
         context = super().get_context_data(**kwargs)
         context['filter'] = PostFilter(self.request.GET, queryset=self.get_queryset())
         context['is_authors'] = self.request.user.groups.filter(name='authors').exists()
-        """id = self.kwargs.get('pk')
-        category = ''
-        for i in Post.objects.get(pk=id).post_category.all():
-            category += (i.title + ' ')
-        context['post_category'] = category"""
         return context
 
 
@@ -118,7 +113,7 @@ class PostCategoryList(ListView):
     queryset = Category.objects.all()
 
 
-class PostCategoryDetails(LoginRequiredMixin, DetailView):
+class PostCategoryDetails(DetailView):
     template_name = 'news/category.html'
     context_object_name = 'category'
     queryset = Category.objects.all()

@@ -113,17 +113,14 @@
   outline: none;
   border-width: 2px 0;
   border-style: solid none;
-  border-color: #FDBE33 #000 #D77206;
-  background: linear-gradient(#F3AE0F, #E38916) #E38916;
+  border-color: rgba(0, 0, 0, 0.07);
+  background: #faa732;
   transition: 0.2s;
 }
-.button_edit:hover { background: linear-gradient(#f5ae00, #f59500) #f5ae00; }
-.button_edit:active { background: linear-gradient(#f59500, #f5ae00) #f59500; }
+.button.button-edit:hover {background: #f9960a}
 
 .button_add {
-
   display: inline-block;
-  margin-left: 41%;
   color: white;
   text-decoration: none;
   padding: .5em 2em;
@@ -163,6 +160,20 @@
   transition: 0.2s;
 }
 .button_cancel_form:hover { background: #006da3}
+
+.button_del {
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  padding: .5em 2em;
+  outline: none;
+  border-width: 2px 0;
+  border-style: solid none;
+  border-color: rgba(0, 0, 0, 0.07);
+  background: #da4f49;
+  transition: 0.2s;
+}
+.button.button-del:hover {background: #d0312a}
 
 /* Body */
 #glaw{

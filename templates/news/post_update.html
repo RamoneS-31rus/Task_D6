@@ -6,7 +6,7 @@
             {% csrf_token %}
             {{ form }}
             <hr>
-            <button type="submit" class="btn btn-success">Сохранить</button> <a class="btn btn-primary" href="{% url 'post' post.id %}" role="button">Отмена</a>
+            <button type="submit" class="button_add_form">Сохранить</button> <a class="button_cancel_form" href="{% url 'post' post.id %}" role="button">Отмена</a>
         </form>
     </div>
 </div>
