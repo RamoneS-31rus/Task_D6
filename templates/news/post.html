@@ -11,7 +11,7 @@ Post
         <tr>
             <td>{{ post.post_type }} Категория:
             {% for category in post_category %}
-                <a class="button_info" "{% url 'category_posts' category.pk %}">{{ category.title }}</a>
+                <a class="button_info" href="{% url 'category_posts' category.pk %}">{{ category.title }}</a>
             {% endfor %}
                 </td>
         </tr>
