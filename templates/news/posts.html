@@ -46,3 +46,18 @@ News
     {% endif %}
 {% endif %}
 {% endblock content %}
+
+{%  if posts %}
+        {% for post in posts %}
+        <div id="glaw">
+            <div class="blok_center">
+                <p>{{ post.post_type }}</p>
+                <h3><a href="{% url 'post' post.id %}">{{ post.post_title|title|censor }}</a></h3>
+                <p>{{ post.post_author}} {{post.post_time|date:'d.m.Y H:i' }}</p>
+                <p>{{ post.post_text|censor|truncatewords:15}}</p>
+            </div>
+        </div>
+        {% endfor %}
+    {%  else %}
+        <h1>новостей нет</h1>
+    {% endif %}

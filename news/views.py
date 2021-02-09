@@ -22,6 +22,14 @@ class PostList(ListView):
         context = super().get_context_data(**kwargs)
         context['filter'] = PostFilter(self.request.GET, queryset=self.get_queryset())
         context['is_authors'] = self.request.user.groups.filter(name='authors').exists()
+        post_category = {}
+        for post in Post.objects.all():
+            category = []
+            id = post.id
+            for i in list(Post.objects.get(pk=id).post_category.all()):
+                category.append(i)
+            post_category.update({post: category})
+        context['post_category']=post_category
         return context
 
 
